@@ -8,7 +8,7 @@ hdfs_nn = sys.argv[1]
 spark = SparkSession.builder.appName("Assignment 2 Question 2").getOrCreate()
 
 input_file_name = 'hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv'%(hdfs_nn)
-output_dir_name = 'hdfs://%s:9000//assignment2/output/question2' %(hdfs_nn)
+output_dir_name = 'hdfs://%s:9000/assignment2/output/question2'%(hdfs_nn)
 
 df = spark.read.csv(input_file_name, header=True)
 df = df.filter(df["Price Range"].isNotNull())

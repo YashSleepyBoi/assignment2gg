@@ -8,7 +8,7 @@ hdfs_nn = sys.argv[1]
 spark = SparkSession.builder.appName("Assigment 2 Question 4").getOrCreate()
 
 input_file_name = 'hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv'%(hdfs_nn)
-output_dir_name = 'hdfs://%s:9000//assignment2/output/question4' % (hdfs_nn)
+output_dir_name = 'hdfs://%s:9000/assignment2/output/question4'%(hdfs_nn)
 df = spark.read.csv(input_file_name, header=True)
 # Extract cuisine style
 

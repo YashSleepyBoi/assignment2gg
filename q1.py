@@ -9,7 +9,7 @@ spark = SparkSession.builder.appName("Assigment 2 Question 1").getOrCreate()
 # YOUR CODE GOES BELOW
 
 input_file_name = 'hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv'%(hdfs_nn)
-output_dir_name = 'hdfs://%s:9000/assignment2/output/question1' % (hdfs_nn)
+output_dir_name = 'hdfs://%s:9000/assignment2/output/question1' %(hdfs_nn)
 
 df = spark.read.csv(input_file_name, header=True)
 

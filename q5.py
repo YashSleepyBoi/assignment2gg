@@ -9,8 +9,8 @@ hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 5").getOrCreate()
 # YOUR CODE GOES BELOW
-input_file_name = 'hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv'%(hdfs_nn)
-output_dir_name = 'hdfs://%s:9000//assignment2/output/question5' % (hdfs_nn)
+input_file_name = 'hdfs://%s:9000/assignment2/part1/input/tmdb_5000_credits.parquet'%(hdfs_nn)
+output_dir_name = 'hdfs://%s:9000/assignment2/output/question5' %(hdfs_nn)
 
 df =  spark.read.parquet(input_file_name, header=True)
 df_cast = df.select("movie_id", "title", explode(expr("from_json(cast, 'array<struct<cast_id:long,character:string,credit_id:string,gender:long,id:long,name:string,order:long>>')")).alias("cast_info"))

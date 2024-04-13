@@ -6,7 +6,7 @@ hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assignment 2 Question 3").getOrCreate()
 input_file_name = 'hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv'%(hdfs_nn)
-output_dir_name = 'hdfs://%s:9000//assignment2/output/question3' % (hdfs_nn)
+output_dir_name = 'hdfs://%s:9000/assignment2/output/question3'%(hdfs_nn)
 df = spark.read.csv(input_file_name, header=True)
 
 # Filter out rows with null Price Range

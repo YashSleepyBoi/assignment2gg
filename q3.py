@@ -2,7 +2,7 @@ import sys
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import lit
 # you may add more import if you need to
-
+hdfs_nn = sys.argv[1]
 # Start session
 spark = SparkSession.builder.appName("Assigment 2 Question 3").getOrCreate()
 input_file_name = 'hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv'%(hdfs_nn)

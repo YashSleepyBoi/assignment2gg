@@ -3,7 +3,7 @@
 echo "1001234,1003456"
 
 # change the following according to your environment
-hdfs_namenode="ip-172-31-84-88"
+hdfs_namenode="ip-172-31-91-108"
 
 # don't change following
 
@@ -20,7 +20,9 @@ echo "question 2"
 hdfs dfs -rm -r /assignment2/output/question2
 spark-submit q2.py $hdfs_namenode 
 
-
+echo "question 3" 
+hdfs dfs -rm -r /assignment2/output/question3
+spark-submit q3.py $hdfs_namenode 
 
 echo "question 4"
 hdfs dfs -rm -r /assignment2/output/question4

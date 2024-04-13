@@ -20,6 +20,6 @@ cleaned_df = df.filter(df["Number of Reviews"].isNotNull() & (df["Rating"] >= 1.
 cleaned_df.write.mode('overwrite').option("header", True).csv(output_dir_name)
 
 
-# cleaned_df.show()
+cleaned_df.show()
 
 spark.stop()

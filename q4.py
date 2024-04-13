@@ -7,8 +7,8 @@ hdfs_nn = sys.argv[1]
 # Start session
 spark = SparkSession.builder.appName("Assigment 2 Question 4").getOrCreate()
 
-input_file_name = '/content/TA_restaurants_curated_cleaned.csv'
-output_path = '/content/output3'
+input_file_name = 'hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv'%(hdfs_nn)
+output_dir_name = 'hdfs://%s:9000//assignment2/output/question4' % (hdfs_nn)
 df = spark.read.csv(input_file_name, header=True)
 # Extract cuisine style
 
@@ -24,7 +24,7 @@ df = df.withColumn("Cuisine", regexp_replace(df["Cuisine"], "^\[ '\s*", ""))
 restaurant_counts_df = df.groupBy("City", "Cuisine").count().orderBy("City","Cuisine")
 
 # Write the output as CSV
-restaurant_counts_df.write.mode('overwrite').option("header", True).csv(output_path)
+restaurant_counts_df.write.mode('overwrite').option("header", True).csv(output_dir_name)
 
 restaurant_counts_df.show()
 

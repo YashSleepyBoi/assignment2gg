@@ -5,9 +5,9 @@ from pyspark.sql.functions import col, max as max_, min as min_
 hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assignment 2 Question 3").getOrCreate()
-
-input_fpath = '/content/TA_restaurants_curated_cleaned.csv'
-df = spark.read.csv(input_fpath, header=True)
+input_file_name = 'hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv'%(hdfs_nn)
+output_dir_name = 'hdfs://%s:9000//assignment2/output/question3' % (hdfs_nn)
+df = spark.read.csv(input_file_name, header=True)
 
 # Filter out rows with null Price Range
 df_filtered = df.filter(col("Price Range").isNotNull())
@@ -22,4 +22,4 @@ result_df = result_df.join(df_filtered, ["City", "Price Range"], "inner") \
 result_df.show()
 
 # Write the filtered DataFrame as CSV
-result_df.write.csv("/assignment2/output/question2/", header=True)
+result_df.write.csv(output_dir_name, header=True)

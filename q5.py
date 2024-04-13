@@ -9,10 +9,10 @@ hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 5").getOrCreate()
 # YOUR CODE GOES BELOW
-output_path = '/content/output6'
-input_fpath = '/content/tmdb_5000_credits.parquet'
+input_file_name = 'hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv'%(hdfs_nn)
+output_dir_name = 'hdfs://%s:9000//assignment2/output/question5' % (hdfs_nn)
 
-df =  spark.read.parquet(input_fpath, header=True)
+df =  spark.read.parquet(input_file_name, header=True)
 df_cast = df.select("movie_id", "title", explode(expr("from_json(cast, 'array<struct<cast_id:long,character:string,credit_id:string,gender:long,id:long,name:string,order:long>>')")).alias("cast_info"))
 # df_cast.show()
 df_cast = df_cast.select("movie_id", "title", col("cast_info.name").alias("actor1"))
@@ -43,4 +43,4 @@ final_result = actor_pair_filtered.join(actor_pair, ["actor1", "actor2"], "inner
 # final_result.show()
 
 # Write result to Parquet files
-final_result.write.parquet(output_path, mode="overwrite")
+final_result.write.parquet(output_dir_name, mode="overwrite")

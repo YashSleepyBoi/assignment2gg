@@ -22,7 +22,7 @@ low_avg_df = average_rating_df.orderBy("AverageRating").limit(3).withColumn("Rat
 combined_df = top_avg_df.union(low_avg_df)
 
 # Write the output as CSV
-combined_df.write.mode('overwrite').option("header", True).csv(output_path)
+combined_df.write.mode('overwrite').option("header", True).csv(output_dir_name)
 
 # Stop SparkSession
 spark.stop()

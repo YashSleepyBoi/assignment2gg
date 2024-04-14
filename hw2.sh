@@ -1,6 +1,6 @@
 
 # change the following according to your student numbers
-echo "1001234,1003456"
+echo "1006199,1005207,1006308"
 
 # change the following according to your environment
 hdfs_namenode="ip-172-31-95-107"

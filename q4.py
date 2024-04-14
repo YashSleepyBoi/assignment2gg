@@ -22,10 +22,10 @@ df = df.withColumn("Cuisine", regexp_replace(df["Cuisine"], "^\[ '\s*", ""))
 
 # Group by city and cuisine, then count the number of restaurants
 restaurant_counts_df = df.groupBy("City", "Cuisine").count().orderBy("City","Cuisine")
+restaurant_counts_df.show()
 
 # Write the output as CSV
 restaurant_counts_df.write.mode('overwrite').option("header", True).csv(output_dir_name)
 
-restaurant_counts_df.show()
 
 spark.stop()

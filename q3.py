@@ -20,7 +20,7 @@ average_rating_df = average_rating_df.withColumnRenamed("avg(Rating)", "AverageR
 top_avg_df = average_rating_df.orderBy("AverageRating", ascending=False).limit(3).withColumn("RatingGroup", lit("Top"))
 low_avg_df = average_rating_df.orderBy("AverageRating").limit(3).withColumn("RatingGroup", lit("Bottom"))
 combined_df = top_avg_df.union(low_avg_df)
-
+combined_df.show()
 # Write the output as CSV
 combined_df.write.mode('overwrite').option("header", True).csv(output_dir_name)
 

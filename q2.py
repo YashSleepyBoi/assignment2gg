@@ -26,8 +26,8 @@ best_restaurants = df.withColumn("rank", row_number().over(window_best)).filter(
 worst_restaurants = df.withColumn("rank", row_number().over(window_worst)).filter(col("rank") == 1).drop("rank")
 
 #best + worst
-result_df = best_restaurants.union(worst_restaurants)
-
+result_df = best_restaurants.union(worst_restaurants).orderBy("City")
+result_df.show()
 # result_df.show()
 result_df.write.mode('overwrite').option("header", True).csv(output_dir_name)
 spark.stop()

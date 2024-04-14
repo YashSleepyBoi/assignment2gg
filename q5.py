@@ -37,6 +37,7 @@ actor_pair_filtered = actor_pair_count.filter(col("count") >= 2)
 
 # Join with original actor_pair dataframe to get movie_id and title
 final_result = actor_pair_filtered.join(actor_pair, ["actor1", "actor2"], "inner").select("movie_id", "title", "actor1", "actor2")
+final_result.show()
 final_result.write.parquet(output_dir_name, mode="overwrite")
 # Show the resulting actor pairs
 # final_result.show()
